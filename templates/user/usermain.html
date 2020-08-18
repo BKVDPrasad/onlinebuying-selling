@@ -1,0 +1,10 @@
+{% extends 'user/usercommon.html' %}
+
+{% block data %}
+    {% if reques.session.status %}
+{% include 'user/memu.html' %}
+        {% else %}
+        <h3 style="text-align: center"> Session expire Plz login again </h3>
+    {% endif %}
+
+{% endblock %}

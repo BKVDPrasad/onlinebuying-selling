@@ -1,0 +1,22 @@
+{% extends 'common.html' %}
+{% block common %}
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'sell' %}">Sell</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'buy' %}">Buy</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Update</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'question' %}">Ask any Doubts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="#">logout </a>
+  </li>
+</ul>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'user/usercommon.html' %}
+
+
+{% block data %}
+
+{% include 'user/memu.html' %}
+
+<h5 style="text-align: center;color: red">Add Your Product To Sell</h5>
+<br><br><br>
+
+    <form action="{% url 'savepro' %}?userid={{ data.userid }}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <table align="center" border="7">
+    <tr>
+        <th>Product Type</th>
+        <th><select name="t1" required>
+                <option>------</option>
+                <option value="laptop"> Laptop</option>
+                <option value="mobile">Mobiles</option>
+                <option value="others">Others</option>
+            </select></th>
+    </tr>
+        <tr>
+            <th>Product Name</th>
+            <th><input type="text" name="t2" required></th>
+        </tr>
+    <tr>
+        <th>Price</th>
+        <th><input type="number" name="t3" required min="1"></th>
+    </tr>
+    <tr>
+        <th>Image</th>
+        <th><input type="file" name="t4" ><span style="color: #9FF1EB;">(optional)</span></th>
+    </tr>
+    <tr>
+        <th>Description Product</th>
+        <th><textarea  name="t5"></textarea><span style="color: #9FF1EB;">(optional)</span></th>
+    </tr>
+    <tr align="center"><th colspan="2"><button type="submit">Post</button></th></tr>
+    </table>
+    </form>
+<br><br><br>
+    <table align="center" border="1">
+    <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Update</th>
+        <th>Delete</th>
+
+    </tr>
+    </table>
+
+
+
+
+
+
+
+{% endblock %}

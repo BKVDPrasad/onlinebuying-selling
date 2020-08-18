@@ -1,0 +1,17 @@
+{% extends 'user/usercommon.html' %}
+
+{% block data %}
+{% include 'user/memu.html' %}
+    <h5 align="center"> Ask Your Questions here</h5>
+<form action="#" method="post">
+{% csrf_token %}
+    <table style="padding-right: 10cm">
+        <tr><th> <input type="text" required></th>
+            <th><button type="submit"> Ask</button></th>
+        </tr>
+    </table>
+</form>
+    <h3> Most frequently Asked questions</h3>
+
+
+{% endblock %}
