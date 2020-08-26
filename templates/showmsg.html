@@ -1,0 +1,45 @@
+{% extends 'common.html' %}
+
+{% block common %}
+{% include 'usermenu.html' %}
+    hi
+    <table border="0" align="center">
+   {% for x in msg %}
+       <tr>
+          <th>from</th>   <th>{{ x.fromid.name }}</th>
+            <th>{{ x.customermsg }}</th>
+            <th>{{ x.productid.pname }}</th>
+
+
+           <form action="{% url 'proreplymsg' %}">
+               <th> <textarea name="t1" required > </textarea></th>
+               {% for x in msg %}
+                    <th hidden> <input value="{{ x.fromid_id }}" name="from"> </th>
+            <th hidden><input value="{{ x.toid }}" name="to"></th>
+                   <th><input value="{{ x.productid_id }}" name="pro" hidden></th>
+               {% endfor %}
+
+
+            <th><button type="submit">sent</button></th>
+           </form>
+       </tr>
+    {% endfor %}
+    </table>
+<table align="center" border="2">
+
+    <tr>
+    <th>Product</th>
+    <th>Your Msg</th>
+    <th>Reply</th>
+        {% for x in from %}
+    </tr>
+    <tr>
+    <th>{{ x.productid.pname }}</th>
+    <th>{{ x.customermsg }}</th>
+    <th>{{ x.customerreply }}</th>
+
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

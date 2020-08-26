@@ -1,0 +1,45 @@
+{% extends 'common.html' %}
+
+{% block common %}
+{% include 'mainmenu.html' %}
+    <style>
+    #one{
+        text-align: center;
+        padding:15px;
+        color: lightcoral;
+        font-family: "Ink Free";
+    }
+    h5{
+        color: green;
+        padding: 10px;
+        text-align: center;
+        font-family: SimSun;
+    }
+
+    </style>
+    <h3 id="one"> Register Form</h3>
+
+<form action="{% url 'saveuser' %}" method="post">
+{% csrf_token %}
+    <table align="center">
+        <tr><th ><input type="text"placeholder="Name" required name="name"></th></tr>
+        <tr><th><input type="email" placeholder="Email" name="eamil" required ></th></tr>
+        <tr><th><input type="number"placeholder="Phone Number" name="phonenum" required ></th></tr>
+        <tr><th><input type="password"placeholder="Password" required name="psw"></th></tr>
+        <tr><th><input type="password" placeholder="Confirm Password" required name="cpsw"></th></tr>
+        <tr align="center"><th><button type="submit">Register</button></th></tr>
+    </table>
+
+</form>
+
+   <table width="200" align="center">
+   <tr>
+       <th> {% for x in messages %}
+        <div class="alert alert-danger alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <h5>{{ x }}</h5>
+        </div>
+    {% endfor %}</th>
+   </tr>
+   </table>
+{% endblock %}

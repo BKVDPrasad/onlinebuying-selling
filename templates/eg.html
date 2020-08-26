@@ -1,0 +1,29 @@
+{% extends 'common.html' %}
+
+{% block common %}
+{% load static %}
+{% include 'usermenu.html' %}
+    <h1>home</h1>
+
+
+<form action="{% url 'buypro' %}">
+
+    <table align="center">
+    {% for x in product %}
+        <tr><th><img src="{{ x.image.url }}" height="200" width="200"></th></tr>
+        <tr align="center"><th>{{ x.pname }}</th></tr>
+        <tr align="center"><th>{{ x.price }}</th></tr>
+        <tr><th hidden><input value="{{ x.id }}" name="pid"> </th></tr>
+        <tr><th hidden><input value="{{ data.usernum }}" name="id"></th></tr>
+        <tr align="center"><th><button type="submit">buy</button></th></tr>
+    {% endfor %}
+    </table>
+</form>
+
+
+
+
+
+
+
+{% endblock %}

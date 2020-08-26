@@ -1,0 +1,22 @@
+{% extends 'common.html' %}
+
+{% block common %}
+
+<table bgcolor="black" align="center" ><tr><th>
+<ul class="nav justify-content-center" >
+  <li class="nav-item" >
+    <a class="nav-link active" href="{% url 'home' %}?id={{ data.usernum }}">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'sell' %}?id={{ data.usernum }}">Sell</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'ask' %}?id={{ data.usernum }}">Ask Quation</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'custmsg' %}?id={{ data.usernum }}">Your Messages from Customer</a>
+</ul>
+</th></tr>
+</table>
+
+{% endblock %}

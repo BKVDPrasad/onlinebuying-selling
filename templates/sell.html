@@ -1,0 +1,61 @@
+{% extends 'common.html' %}
+
+{% block common %}
+{% include 'usermenu.html' %}
+    <style>
+    h5{
+        text-align: center;
+        padding: 20px;
+        color: #FF3FA4;
+    }
+    h4{
+        text-align: center;
+        padding: 10px;
+        color: chocolate;
+        font-family: "Sitka Heading";
+
+    }
+    </style>
+
+    <h5>You Can Upload Your Product</h5>
+    <form action="{% url 'savepro' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <table align="center" border="0">
+        <tr><th><select name="t1" required>
+            <option>Choose Type Of Product</option>
+            <option value="laptop">Laptop</option>
+            <option value="mobile">Mobile</option>
+            <option value="tv">TV</option>
+            <option value="other">Others</option>
+        </select></th></tr>
+        <tr><th><input type="text" required name="t2" placeholder="Product Name"></th></tr>
+        <tr><th><input type="number" name="t3" placeholder="Price OF Product" required min="1"></th></tr>
+        <tr><th><textarea name="t4" required placeholder="Description Of Product"></textarea></th></tr>
+        <tr><th><input type="file" name="t5" required placeholder="Image Of Product" ></th></tr>
+        <tr><th></th></tr>
+        <tr align="center"><th><button type="submit">Post</button></th></tr>
+            <tr><th> <input type="hidden" value="{{ data.usernum }}" name="usernum"></th></tr>
+    </table>
+    </form>
+    {% for x in messages %}
+    <h5>{{ x }}</h5>
+    {% endfor %}
+<br><br>
+
+    <h4> Your Added Products</h4>
+    <table align="center" border="2">
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>sold</th>
+            <th>Update</th>
+            <th>delete</th>
+        </tr>
+    {% for x in product %}
+    <tr>
+        <th>{{ x.pname }}</th>
+        <th>{{  x.price }}</th>
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

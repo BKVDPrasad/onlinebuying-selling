@@ -1,31 +1,25 @@
 from django.db import models
 
-#Admin can manage everything this site
+# Create your models here.
 
 class UserModel(models.Model):
-    userid = models.AutoField(primary_key=True)
+    usernum = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
-    contactno = models.IntegerField()
-    password = models.CharField(max_length=30)
+    phno = models.IntegerField(unique=True)
+    password = models.CharField(max_length=40)
 
 class ProductModel(models.Model):
+    ptype = models.CharField(max_length=40)
+    pname = models.CharField(max_length=40)
+    price = models.DecimalField(decimal_places=2,max_digits=9,default=0)
+    descriptionproduct = models.TextField()
+    image = models.ImageField(upload_to='products/')
     userid = models.ForeignKey(UserModel,on_delete=models.CASCADE,default=0)
-    pno = models.AutoField(primary_key=True)
-    pname = models.CharField(max_length=30)
-    category = models.CharField(max_length=30)
-    price = models.FloatField()
-    description = models.TextField(null=True)
-    photo =models.ImageField(upload_to='media/products/',null=True)
 
-
-class ReportModel(models.Model):
-    uid = models.ForeignKey(UserModel,on_delete=models.CASCADE)
-    logintime = models.DateTimeField()
-    logouttime = models.DateTimeField()
-
-class QuestionModel(models.Model):
-    uid = models.ForeignKey(UserModel,on_delete=models.CASCADE)
-    qid = models.IntegerField(primary_key=True)
-    question = models.CharField(max_length=30)
-    ans = models.TextField()
+class ProductMessage(models.Model):
+    customermsg = models.TextField(null=True)
+    customerreply = models.TextField(null=True)
+    productid = models.ForeignKey(ProductModel,on_delete=models.CASCADE)
+    fromid = models.ForeignKey(UserModel,on_delete=models.CASCADE)
+    toid = models.IntegerField()

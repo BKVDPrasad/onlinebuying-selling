@@ -1,0 +1,73 @@
+{% extends 'common.html' %}
+
+{% block common %}
+{% include 'usermenu.html' %}
+    <style>
+    h5{
+        text-align: center;
+        color: #FF2177;
+        padding: 20px;
+        size: 30cm;
+        font-family: "Yu Gothic UI";
+    }
+    </style>
+
+    <script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+
+<h5>You Chose Product</h5>
+    <table align="center" border="0">
+        <tr><th><img src="{{ product.image.url }}"></th></tr>
+        <tr align="center"><th>{{ product.pname }}</th></tr>
+        <tr align="center"><th>{{ product.price }}</th></tr>
+        <tr align="center"><th>{{ product.descriptionproduct }}</th></tr>
+
+        <tr align="center"><th><button type="submit">AddCart</button></tr>
+{#        <tr><th><a href="#" style="text-decoration: none">Contact US</a></th></tr>#}
+    </table>
+<br>
+<form action="{% url 'msg' %}">
+<table align="center">
+<tr>
+    <th>Message To Product Owner</th>
+    <th><textarea name="msg" placeholder="optional" required></textarea></th>
+    <th><input hidden value="{{ data.usernum }}" name="uid"></th>
+    <th><input hidden value="{{ product.id }}" name="pid"></th>
+    <th><input hidden value="{{ pp.usernum }}" name="rec"></th>
+
+    <th><button type="submit">Send</button></th>
+</tr>
+</table>
+{% if msg %}
+    <h4 align="center">{{ msg }} {{ pp.name }}</h4>
+{% endif %}
+
+</form>
+
+
+
+{#    <h5>Product Owner Details</h5>#}
+
+   <p align="center"> <button  onclick="myFunction()">To Hide and Show Product Owner Details Click Here </button> </p>
+
+    <div id="myDIV">
+
+    <table align="center">
+        <tr><th>{{ pp.usernum }}</th></tr>
+    <tr><th>Name</th><th> {{ pp.name }} </th></tr>
+    <tr><th>Email</th><TH>{{ pp.email }}</TH></tr>
+    <tr><th>Phone Num</th><th>{{ pp.phno }}</th></tr>
+    </table>
+    </div>
+
+{% endblock %}
